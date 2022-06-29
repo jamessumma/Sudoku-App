@@ -7,9 +7,13 @@
 <?import javafx.scene.layout.*?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml" alignment="TOP_CENTER" hgap="10" vgap="10"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="TOP_CENTER"
           fx:controller="sudoku.sudokuapp.PrimaryController"
-          prefHeight="400.0" prefWidth="600.0">
-    <Label text = "Sudoku Game"/>
+          prefHeight="600.0" prefWidth="600.0">
+    <Label text = "Sudoku Game" textFill="black" fx:id="title" GridPane.vgrow="ALWAYS"
+           GridPane.columnSpan="2" minWidth="40" minHeight="10" id="Title" />
+
+
 
 </GridPane>
