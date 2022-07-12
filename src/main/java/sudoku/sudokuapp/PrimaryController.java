@@ -1,5 +1,6 @@
 package sudoku.sudokuapp;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,5 +15,9 @@ public class PrimaryController {
 
     @FXML
     private Button startButton;
+
+    public void startGame(ActionEvent e){
+        System.out.println("starting game");
+    }
 
 }

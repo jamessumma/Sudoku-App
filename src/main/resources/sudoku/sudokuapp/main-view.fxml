@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sudoku.sudokuapp.PrimaryController">
    <children>
       <Label alignment="CENTER" prefHeight="120.0" prefWidth="175.0" text="Sudoku">
          <font>
@@ -15,6 +15,6 @@
       </Label>
       <Label text="Player Name" />
       <TextField alignment="CENTER" />
-      <Button fx:id="startButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: Gray; -fx-border-color: Black;" text="Play" textAlignment="CENTER" />
+      <Button fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: Gray; -fx-border-color: Black;" text="Play" textAlignment="CENTER" />
    </children>
 </VBox>
