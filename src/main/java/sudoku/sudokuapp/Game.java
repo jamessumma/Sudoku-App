@@ -15,7 +15,7 @@ public class Game {
         return randomColumn;
     }
 
-    public void columnGenerator(){
+    private void columnGenerator(){
         int[] randomColumn = new int[9];
         ArrayList fifthColumn = new ArrayList();
         for (int i = 1; i < 10; i++) {
@@ -26,6 +26,15 @@ public class Game {
             this.randomColumn[i] = (int) fifthColumn.get(i);
         }
     }
+
+    private void fullGenerator(){
+
+    }
+
+    private void gameValidation(){
+
+    }
+
 
 
 }
