@@ -2,32 +2,33 @@ package sudoku.sudokuapp;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
-    int[][] board;
-    int[] randomColumn = new int[9];
+    int[][] board = new int[9][9];
 
     public Game() {
         columnGenerator();
+
     }
 
-    public int[] getRandomColumn(){
-        return randomColumn;
-    }
 
     private void columnGenerator(){
-        int[] randomColumn = new int[9];
-        ArrayList fifthColumn = new ArrayList();
+        ArrayList firstColumn = new ArrayList();
         for (int i = 1; i < 10; i++) {
-            fifthColumn.add(i);
+            firstColumn.add(i);
         }
-        Collections.shuffle(fifthColumn);
+        Collections.shuffle(firstColumn);
         for (int i = 0; i < 9; i++) {
-            this.randomColumn[i] = (int) fifthColumn.get(i);
+            this.board[0][i] = (int) firstColumn.get(i);
         }
     }
 
     private void fullGenerator(){
+
+
+
+        //int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
 
     }
 
