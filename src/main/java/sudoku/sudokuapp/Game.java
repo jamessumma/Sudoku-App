@@ -2,18 +2,17 @@ package sudoku.sudokuapp;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
     int[][] board = new int[9][9];
 
     public Game() {
-        columnGenerator();
+        firstRowGenerator();
 
     }
 
 
-    private void columnGenerator(){
+    private void firstRowGenerator(){
         ArrayList firstColumn = new ArrayList();
         for (int i = 1; i < 10; i++) {
             firstColumn.add(i);
@@ -30,6 +29,16 @@ public class Game {
 
         //int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
 
+    }
+
+    private Boolean rowContains(int rowIndex, int num){
+
+        return true;
+    }
+
+    private Boolean columnContains(int columnIndex, int num){
+
+        return true;
     }
 
     private void gameValidation(){
