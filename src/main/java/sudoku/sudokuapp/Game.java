@@ -7,6 +7,11 @@ public class Game {
     int[][] board = new int[9][9];
 
     public Game() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = 0;
+            }
+        }
         firstRowGenerator();
 
     }
@@ -32,13 +37,17 @@ public class Game {
     }
 
     private Boolean rowContains(int rowIndex, int num){
-
-        return true;
+        for (int i = 0; i < 9; i++) {
+            if (board[rowIndex][i] == num) return true;
+        }
+        return false;
     }
 
     private Boolean columnContains(int columnIndex, int num){
-
-        return true;
+        for (int i = 0; i < 9; i++) {
+            if (board[columnIndex][i] == num) return true;
+        }
+        return false;
     }
 
     private void gameValidation(){
