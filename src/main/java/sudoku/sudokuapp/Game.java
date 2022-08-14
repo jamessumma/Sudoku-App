@@ -2,6 +2,7 @@ package sudoku.sudokuapp;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
@@ -62,8 +63,10 @@ public class Game {
     }
 
     private Boolean rowContainsDuplicates(int rowIndex){
+        HashMap<Integer, Integer> map = new HashMap();
         for (int i = 0; i < 9; i++) {
-
+            if (map.containsValue(board[rowIndex][i])) return true;
+            else map.put(i, board[rowIndex][i]);
         }
         return false;
     }
@@ -76,8 +79,10 @@ public class Game {
     }
 
     private Boolean columnContainsDuplicates(int columnIndex){
+        HashMap<Integer, Integer> map = new HashMap();
         for (int i = 0; i < 9; i++) {
-
+            if (map.containsValue(board[i][columnIndex])) return true;
+            else map.put(i, board[i][columnIndex]);
         }
         return false;
     }
