@@ -61,9 +61,9 @@ public class Game {
         return false;
     }
 
-    private Boolean rowContainsDuplicates(int rowIndex, int num){
+    private Boolean rowContainsDuplicates(int rowIndex){
         for (int i = 0; i < 9; i++) {
-            if (board[rowIndex][i] == num) return true;
+
         }
         return false;
     }
@@ -75,19 +75,21 @@ public class Game {
         return false;
     }
 
-    private Boolean columnContainsDuplicates(int columnIndex, int num){
+    private Boolean columnContainsDuplicates(int columnIndex){
         for (int i = 0; i < 9; i++) {
-            if (board[i][columnIndex] == num) return true;
+
         }
         return false;
     }
 
+    // check rows and columns for duplicates and make sure there are no zeros on the board
     private boolean gameIsValid(){
         int num;
         for (int i = 0; i < 9; i++) {
+            if (rowContainsDuplicates(i) || columnContainsDuplicates(i)) return false;
             for (int j = 0; j < 9; j++) {
                 num = board[i][j];
-                if ()
+                if (num == 0) return false;
             }
         }
         return true;
