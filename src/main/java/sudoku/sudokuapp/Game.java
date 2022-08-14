@@ -61,6 +61,13 @@ public class Game {
         return false;
     }
 
+    private Boolean rowContainsDuplicates(int rowIndex, int num){
+        for (int i = 0; i < 9; i++) {
+            if (board[rowIndex][i] == num) return true;
+        }
+        return false;
+    }
+
     private Boolean columnContains(int columnIndex, int num){
         for (int i = 0; i < 9; i++) {
             if (board[i][columnIndex] == num) return true;
@@ -68,8 +75,22 @@ public class Game {
         return false;
     }
 
-    private void gameValidation(){
+    private Boolean columnContainsDuplicates(int columnIndex, int num){
+        for (int i = 0; i < 9; i++) {
+            if (board[i][columnIndex] == num) return true;
+        }
+        return false;
+    }
 
+    private boolean gameIsValid(){
+        int num;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                num = board[i][j];
+                if ()
+            }
+        }
+        return true;
     }
 
 
