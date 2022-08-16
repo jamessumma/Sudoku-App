@@ -65,8 +65,14 @@ public class Game {
 
     }
 
-    private boolean entryIsValid(int i, int j, int num){
 
+    // if the specified entry has no row, column, or box duplicates, return true
+    private boolean entryIsValid(int i, int j, int num){
+        if (boxContains(i-i%3, j-j%3, num)
+                || rowContains(i, num)
+                || columnContains(j, num) ){
+            return false;
+        }
         return true;
     }
 
@@ -108,6 +114,7 @@ public class Game {
         return false;
     }
 
+    // returns true if the row contains duplicates
     private Boolean rowContainsDuplicates(int rowIndex){
         HashMap<Integer, Integer> map = new HashMap();
         for (int i = 0; i < 9; i++) {
@@ -117,6 +124,7 @@ public class Game {
         return false;
     }
 
+    // returns true if the column contains the number
     private Boolean columnContains(int columnIndex, int num){
         for (int i = 0; i < 9; i++) {
             if (board[i][columnIndex] == num) return true;
@@ -124,6 +132,7 @@ public class Game {
         return false;
     }
 
+    // returns true if the column contains duplicates
     private Boolean columnContainsDuplicates(int columnIndex){
         HashMap<Integer, Integer> map = new HashMap();
         for (int i = 0; i < 9; i++) {
