@@ -8,7 +8,6 @@ public class Game {
 
     public Game() {
         clearBoard();
-        firstRowGenerator();
         fullGenerator();
 
     }
@@ -21,62 +20,82 @@ public class Game {
     }
 
 
-    private void firstRowGenerator(){
-        ArrayList firstRow = new ArrayList();
-        for (int i = 1; i < 10; i++) {
-            firstRow.add(i);
-        }
-        Collections.shuffle(firstRow);
-        for (int i = 0; i < 9; i++) {
-            this.board[0][i] = (int) firstRow.get(i);
-        }
+    private void fullGenerator(){
+        fillDiagonal();
+        fillRemaining(0, 3);
     }
 
-    private void fullGenerator(){
-        ArrayList nums = new ArrayList();
-        for (int i = 1; i < 10; i++) {
-            nums.add(i);
+    void fillDiagonal() {
+        fillBox(0, 0);
+        fillBox(3, 3);
+        fillBox(6, 6);
+    }
+
+    boolean fillRemaining(int i, int j) {
+
+        int N = 9;
+        int SRN = 3;
+        if (j>=N && i<N-1)
+        {
+            i = i + 1;
+            j = 0;
         }
-        int maxAttempts = 20000000;
-        int tries = 0;
-        while (maxAttempts > tries) {
-            clearBoard();
-            firstRowGenerator();
-            for (int i = 1; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    Collections.shuffle(nums);
-                    for (int k = 0; k < nums.size(); k++) {
-                        if (!rowContains(i, (int) nums.get(k)) && !columnContains(j, (int) nums.get(k))) {
-                            board[i][j] = (int) nums.get(k);
-                            break;
-                        }
-                        if (k == nums.size() - 1) {
-                            i = 8;
-                            j = 8;
-                            tries++;
-                        }
-                    }
-                }
+        if (i>=N && j>=N)
+            return true;
+
+        if (i < SRN)
+        {
+            if (j < SRN)
+                j = SRN;
+        }
+        else if (i < N-SRN)
+        {
+            if (j==(int)(i/SRN)*SRN)
+                j =  j + SRN;
+        }
+        else
+        {
+            if (j == N-SRN)
+            {
+                i = i + 1;
+                j = 0;
+                if (i>=N)
+                    return true;
             }
         }
-        //int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
 
+        for (int num = 1; num <= N; num++) {
+            if (entryIsValid(i, j, num)) {
+                board[i][j] = num;
+                if (fillRemaining(i, j+1)) {
+                    return true;
+                }
+                board[i][j] = 0;
+            }
+        }
+        return false;
     }
 
     //Fill a 3 x 3 box
     private void fillBox(int row,int column)
     {
         LinkedList<Integer> nums = randomGenerator();
-        int num = nums.peekFirst();
+        int maxAttempts = 81;
+        int numTries = 0;
+        int num = nums.pop();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                while (!boxContains(row - row % 3, column - column % 3, num)){
-                    nums.removeFirst();
-                    nums.add(num);
-                    num = nums.peekFirst();
+                while (true){
+                    numTries++;
+                    if (entryIsValid(row + i, column + j, num)){
+                        board[row + i][column + j] = num;
+                        break;
+                    }
+                    else{
+                        nums.add(num);
+                        num = nums.pop();
+                    }
                 }
-                nums.removeFirst();
-                board[row + i][column + j] = num;
             }
         }
     }
@@ -84,7 +103,7 @@ public class Game {
     // generates a randomized list of numbers 1-9
     private LinkedList<Integer> randomGenerator(){
         LinkedList<Integer> list = new LinkedList<>();
-        for (int i = 1; i < 9; i++) {
+        for (int i = 1; i < 10; i++) {
             list.add(i);
         }
         Collections.shuffle(list);
