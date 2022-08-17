@@ -1,8 +1,6 @@
 package sudoku.sudokuapp;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
@@ -65,10 +63,38 @@ public class Game {
 
     }
 
+    //Fill a 3 x 3 box
+    private void fillBox(int row,int column)
+    {
+        LinkedList<Integer> nums = randomGenerator();
+        int num = nums.peekFirst();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                while (!boxContains(row - row % 3, column - column % 3, num)){
+                    nums.removeFirst();
+                    nums.add(num);
+                    num = nums.peekFirst();
+                }
+                nums.removeFirst();
+                board[row + i][column + j] = num;
+            }
+        }
+    }
+
+    // generates a randomized list of numbers 1-9
+    private LinkedList<Integer> randomGenerator(){
+        LinkedList<Integer> list = new LinkedList<>();
+        for (int i = 1; i < 9; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        return list;
+    }
+
 
     // if the specified entry has no row, column, or box duplicates, return true
     private boolean entryIsValid(int i, int j, int num){
-        if (boxContains(i-i%3, j-j%3, num)
+        if (boxContains(i - i % 3, j - j % 3, num)
                 || rowContains(i, num)
                 || columnContains(j, num) ){
             return false;
