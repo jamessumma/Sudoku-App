@@ -18,9 +18,8 @@ public class HelloApplication {
             System.out.println();
             for (int j = 0; j < 9; j++) {
                 System.out.print(game.board[i][j]);
+                System.out.print(" ");
             }
         }
-
-        //launch();
     }
 }
