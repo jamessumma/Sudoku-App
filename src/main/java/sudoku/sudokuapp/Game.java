@@ -121,24 +121,6 @@ public class Game {
         return true;
     }
 
-    // box num is in order, left to right, top to bottom
-    // box 1 is top left, box 9 is bottom right
-    // box 3 is top right, box 7 is bottom left
-    private int getBoxNum(int i, int j){
-        if (i <= 3){
-            if (j <= 3) return 1;
-            if (j <= 6) return 2;
-            else return 3;
-        } else if (i <= 6){
-            if (j <= 3) return 4;
-            if (j <= 6) return 5;
-            else return 6;
-        } else {
-            if (j <= 3) return 7;
-            if (j <= 6) return 8;
-            else return 9;
-        }
-    }
 
     // returns true if the box contains the number
     private boolean boxContains(int rowStart, int columnStart, int num){
